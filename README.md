@@ -9,13 +9,15 @@ A script is used to install:
     - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
-This script will also copy envrionment variables from `~/.bashrc` to `~/.zshrc`,
-and copy command history from `~/.bash_history` to `~/.zsh_history`. (TODO)
+This script will also copy envrionment variables and aliases from `~/.bashrc`
+to `~/.zshrc`, and copy command history from `~/.bash_history` to 
+`~/.zsh_history`. ~~(But still very weak.)~~
 
 ## Prerequires
 
 - curl
 - git
+- python3
 
 ## Usage
 
@@ -32,7 +34,7 @@ cd zsh_setup
 sh setup.sh
 ```
 
-### Test Script in Docker Container
+### Try Script in Docker Container
 
 Build docker image:
 

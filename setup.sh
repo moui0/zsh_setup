@@ -22,10 +22,6 @@ rm -f $zsh_installer
 
 export PATH=$HOME/.local/bin:$PATH
 
-# TODO copy PATH
-
-# TODO copy bash history
-
 # oh-my-zsh
 run "curl -fsSL $ohmyzsh_url > $ohmyzsh_installer" "fetch ohmyzsh installer" "fetch ohmyzsh installer"
 run "RUNZSH=no sh $ohmyzsh_installer" "install ohmyzsh"
@@ -41,5 +37,12 @@ run "git clone -q --depth=1 https://gitclone.com/github.com/romkatv/powerlevel10
 ## config ~/.zshrc
 sed -Ei 's/^plugins=\((.+)\)/plugins=(\1 zsh-autosuggestions zsh-syntax-highlighting)/g' ~/.zshrc
 sed -Ei 's#^ZSH_THEME=.*#ZSH_THEME="powerlevel10k/powerlevel10k"#g' ~/.zshrc
+
+# copy PATH
+grep '^export' ~/.bashrc >> ~/.zshrc
+# copy alias
+grep '^alias' ~/.bashrc >> ~/.zshrc
+# copy bash history
+cat ~/.bash_history | python3 bash-to-zsh-hist.py >> ~/.zsh_history
 
 zsh
