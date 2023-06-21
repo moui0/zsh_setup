@@ -22,17 +22,24 @@ rm -f $zsh_installer
 
 export PATH=$HOME/.local/bin:$PATH
 
-# TODO plugins
-# autosuggestions
-# syntax-highlight
-
-# TODO p10k
-
 # TODO copy PATH
 
 # TODO copy bash history
 
 # oh-my-zsh
 run "curl -fsSL $ohmyzsh_url > $ohmyzsh_installer" "fetch ohmyzsh installer" "fetch ohmyzsh installer"
-run "sh $ohmyzsh_installer" "install ohmyzsh"
+run "RUNZSH=no sh $ohmyzsh_installer" "install ohmyzsh"
 rm -f $ohmyzsh_installer
+
+# plugins
+## autosuggestions
+run "git clone -q https://gitclone.com/github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" "clone zsh-autosuggestions"
+## syntax-highlight
+run "git clone -q https://gitclone.com/github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" "clone zsh-syntax-highlighting"
+## p10k
+run "git clone -q --depth=1 https://gitclone.com/github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" "clone powerlevel10k"
+## config ~/.zshrc
+sed -Ei 's/^plugins=\((.+)\)/plugins=(\1 zsh-autosuggestions zsh-syntax-highlighting)/g' ~/.zshrc
+sed -Ei 's#^ZSH_THEME=.*#ZSH_THEME="powerlevel10k/powerlevel10k"#g' ~/.zshrc
+
+zsh

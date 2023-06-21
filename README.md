@@ -9,7 +9,8 @@ A script is used to install:
     - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
-This script will also copy `PATH` from `~/.bashrc` to `~/.zshrc`, and copy command history from `~/.bash_history` to `~/.zsh_history`.
+This script will also copy envrionment variables from `~/.bashrc` to `~/.zshrc`,
+and copy command history from `~/.bash_history` to `~/.zsh_history`. (TODO)
 
 ## Prerequires
 
